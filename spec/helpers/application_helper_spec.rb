@@ -14,4 +14,8 @@ describe ApplicationHelper do
 			full_title("").should_not =~ /\|/
 		end
 	end
+
+	RSpec.configure do |config|
+		config.include Devise::TestHelpers, :type => :controller
+	end
 end
