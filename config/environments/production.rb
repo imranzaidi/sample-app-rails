@@ -20,6 +20,10 @@ SampleAdd::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  # Force all acces to app over SSL, use String-Transport-Security,
+  # and use secure cookies.
+  config.force_ssl = true
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
