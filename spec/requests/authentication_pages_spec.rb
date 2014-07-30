@@ -87,6 +87,23 @@ describe "Authentication" do
 					end
 				end
 			end
+
+			describe "in the Microposts controller" do
+
+				describe "submitting to the create action" do
+					before { post microposts_path }
+					specify { response.should redirect_to(signin_path) }
+				end
+
+				describe "submitting to the destroy action" do
+					before do
+						micropost = FactoryGirl.create(:micropost)
+						delete micropost_path(micropost)
+					end
+
+					specify { response.should redirect_to(signin_path) }
+				end
+			end
 		end
 
 		describe "as wrong user" do
@@ -111,7 +128,7 @@ describe "Authentication" do
 
 			before { sign_in non_admin }
 
-			describe "submitting a DELETE request to the Users#destory action" do
+			describe "submitting a DELETE request to the Users#destroy action" do
 				before { delete user_path(user) }
 				specify { response.should redirect_to(root_path) }
 			end
